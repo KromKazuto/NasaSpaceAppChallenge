@@ -17,7 +17,7 @@ export default function CardView(cities) {
             data = {{
                 labels: cityList,
                 datasets: [{
-                    label: 'Área incendiada',
+                    label: 'Burnt area',
                     data: focosList,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
