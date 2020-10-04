@@ -1,6 +1,7 @@
 import React from 'react'
 import './auth.css'
 import firebase from 'firebase'
+import logo from './logo.png'
 
 export const isAuthenticated = () => true
 
@@ -11,7 +12,7 @@ class Auth extends React.Component {
 
   constructor(){  
     super()
-    this.authenticate = this.authenticate.bind(this)
+    // this.authenticate = this.authenticate.bind(this)
 
     this.config = {
       apiKey: "AIzaSyAPbXw7WorLwTCzUWwzZXybqSuvD95cQ6c",
@@ -53,11 +54,13 @@ class Auth extends React.Component {
           uid: user.uid,
           providerData: user.providerData
         })
+        isAuthenticated(true)
         localStorage.setItem('firebase_auth', this.state.user)
       } else {
         this.setState({
           user: undefined
         })
+        isAuthenticated(false)
         localStorage.removeItem('firebase_auth')
       }
     })
@@ -98,6 +101,7 @@ class Auth extends React.Component {
     return (
       <div className='content'>
         <div className='authContent'>
+        <img src={logo} />
             <div>
               <label htmlFor='exampleInputEmail'>E-mail:</label>
               <input className={'comboBox'} id='email' ref='email' id='exampleInputEmail'
