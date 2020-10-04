@@ -14,14 +14,14 @@ class Auth extends React.Component {
     this.authenticate = this.authenticate.bind(this)
 
     this.config = {
-        apiKey: "AIzaSyAPbXw7WorLwTCzUWwzZXybqSuvD95cQ6c",
-        authDomain: "nasaspaceappchallenge-5a644.firebaseapp.com",
-        databaseURL: "https://nasaspaceappchallenge-5a644.firebaseio.com",
-        projectId: "nasaspaceappchallenge-5a644",
-        storageBucket: "nasaspaceappchallenge-5a644.appspot.com",
-        messagingSenderId: "936065886333",
-        appId: "1:936065886333:web:0df5e9c4ff5fd4ae566914",
-        measurementId: "G-NB5MJ83DRG"
+      apiKey: "AIzaSyAPbXw7WorLwTCzUWwzZXybqSuvD95cQ6c",
+      authDomain: "nasaspaceappchallenge-5a644.firebaseapp.com",
+      databaseURL: "https://nasaspaceappchallenge-5a644.firebaseio.com",
+      projectId: "nasaspaceappchallenge-5a644",
+      storageBucket: "nasaspaceappchallenge-5a644.appspot.com",
+      messagingSenderId: "936065886333",
+      appId: "1:936065886333:web:0df5e9c4ff5fd4ae566914",
+      measurementId: "G-NB5MJ83DRG"
     }
 
     this.state = {
