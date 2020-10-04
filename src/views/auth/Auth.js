@@ -54,13 +54,13 @@ class Auth extends React.Component {
           uid: user.uid,
           providerData: user.providerData
         })
-        isAuthenticated(true)
+        // isAuthenticated(true)
         localStorage.setItem('firebase_auth', this.state.user)
       } else {
         this.setState({
           user: undefined
         })
-        isAuthenticated(false)
+        // isAuthenticated(false)
         localStorage.removeItem('firebase_auth')
       }
     })
