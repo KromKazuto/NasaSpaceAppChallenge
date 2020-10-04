@@ -76,7 +76,7 @@ export default function CardView() {
             <Card className={classes.root}>
                 <CardHeader
                     avatar={
-                        <Avatar aria-label="recipe" src="icon.jpg" className={classes.avatar}>
+                        <Avatar aria-label="recipe" src="icon.png" className={classes.avatar}>
                         </Avatar>
                     }   
                     title="Against Fire"
