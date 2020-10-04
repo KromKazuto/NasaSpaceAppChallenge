@@ -49,39 +49,7 @@ export default function CardView() {
 
     const handleExpandClick = () => {
         setExpanded(!expanded)
-        test()
     }
-
-    const test = async () => {
-        // var invocation = new XMLHttpRequest(),
-        // url = 'http://queimadas.dgi.inpe.br/queimadas/dados-abertos/api/focos/?pais_id=33',
-        // handler
-
-        // invocation.open('GET', url, true)
-        // invocation.onreadystatechange = handler
-        // console.log('invocation', invocation)
-        // console.log('onreadystatechange', invocation.onreadystatechange)
-        // console.log('handler', handler)
-        // invocation.send()
-
-
-        // return handler
-
-        // await fetch('http://queimadas.dgi.inpe.br/queimadas/dados-abertos/api/focos/?pais_id=33')
-        //   .then(res => {
-        //       console.log('res', res)
-        //       return res.json()})
-        //   .then((result) => {
-        //         console.log('result', result)
-        //         return result
-        //     },
-        //     (error) => {
-        //       console.log('error', error)
-        //     }
-        //   )
-      }
-
-    // console.log('teste', test())
 
     return (
         <div className={classes.container}>
