@@ -1,16 +1,24 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import lodash from 'lodash';
 import { Bar } from 'react-chartjs-2'
 
-export default function CardView() {
+export default function CardView(cities) {
+    let groupCities = lodash.groupBy(cities['cities'], 'municipio_name');
+    let focosList = [];
+    let cityList  = Object.keys(groupCities);
+    Object.values(groupCities).forEach((item, key) => {
+        focosList.push(item[0].count_focos);
+    });
 
     return (
-        <Bar
+        cityList && cityList[0]
+        ?
+        <Bar className="grafico"
             data = {{
-                labels: ['Mato Grosso', 'Amazonas', 'Goias', 'Rio Grande do Sul', 'Acre', 'Santa Catarina'],
+                labels: cityList,
                 datasets: [{
                     label: 'Área incendiada',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: focosList,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -38,6 +46,16 @@ export default function CardView() {
                         }
                     }]
                 }
+            }}
+        />
+        :
+        <Bar
+            data = {{
+                labels: [],
+                datasets: [{
+                    label: 'Área incendiada',
+                    borderWidth: 1
+                }]
             }}
         />
     )

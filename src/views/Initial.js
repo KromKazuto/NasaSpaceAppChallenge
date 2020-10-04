@@ -55,7 +55,7 @@ export default function Initial() {
     const [value, setValue] = React.useState(0)
 
     const handleChange = (event, newValue) => {
-        setValue(newValue)
+        setValue(newValue);
     }
 
     return (
