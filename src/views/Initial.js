@@ -7,7 +7,6 @@ import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import Informations from './Informations'
-import Map from './Map'
 import Analysis from './Analysis'
 
 function TabPanel(props) {
@@ -46,7 +45,7 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: '#D3D3D3',
   },
 }))
 
@@ -62,18 +61,14 @@ export default function Initial() {
         <div className={classes.root}>
             <AppBar style={{background: 'linear-gradient(90deg, rgba(123,58,180,1) 0%, rgba(29,86,253,1) 38%, rgba(252,69,183,1) 100%)'}} position="static">
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="Informações do local" {...a11yProps(0)} />
-                    <Tab label="Mapa" {...a11yProps(1)} />
-                    <Tab label="Análises" {...a11yProps(2)} />
+                    <Tab label="Home" {...a11yProps(0)} />
+                    <Tab label="Analysis" {...a11yProps(1)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
                 <Informations />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <Map />
-            </TabPanel>
-            <TabPanel value={value} index={2}>
                 <Analysis />
             </TabPanel>
         </div>

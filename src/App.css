@@ -1,5 +1,12 @@
-.teste {
+.analysis {
     height: 80vh;
     width: 80vw;
     margin: 0 auto;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+strong {
+    color: #111;
 }
