@@ -91,5 +91,11 @@ export default {
                 return [];
         }
 
+    },
+    getLocation: async () => {
+        return [{
+            "latitude": "-29.7002756",
+            "longitude": "-51.1101028,17"
+        }];
     }
 }

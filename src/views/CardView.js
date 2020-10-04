@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import Card from '@material-ui/core/Card'
@@ -9,12 +9,12 @@ import CardActions from '@material-ui/core/CardActions'
 import Collapse from '@material-ui/core/Collapse'
 import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Typography from '@material-ui/core/Typography'
-import { red } from '@material-ui/core/colors'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import ShareIcon from '@material-ui/icons/Share'
+import Tooltip from '@material-ui/core/Tooltip';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
+import Link from '@material-ui/core/Link';
+import Inpe from '../controllers/Inpe';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
         transform: 'rotate(180deg)',
     },
     avatar: {
-        backgroundColor: red[500],
+        border: '1px solid #111',
     },
     container: {
         display: 'flex'
@@ -45,26 +45,40 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CardView() {
     const classes = useStyles()
-    const [expanded, setExpanded] = React.useState(false)
+    const [expanded, setExpanded] = useState(false)
+    const [locationList, setLocationList] = useState([]);
 
     const handleExpandClick = () => {
         setExpanded(!expanded)
     }
 
+    useEffect(() => {
+        const loadAll = async () => {
+            // Pegando localização
+            let location = await Inpe.getLocation();
+            setLocationList(location);
+        }
+        loadAll();
+    },[]);
+
+    function handleSelectChange(e, obj) {
+        var textField = document.createElement('textarea');
+        textField.innerText = `https://www.google.com/maps/@${locationList[0].latitude},${locationList[0].longitude}z`;
+        document.body.appendChild(textField);
+        textField.select();
+        document.execCommand('copy');
+        textField.remove();
+    }
+
     return (
+        locationList && locationList[0] ?
         <div className={classes.container}>
             <Card className={classes.root}>
                 <CardHeader
                     avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar}>
-                            N
+                        <Avatar aria-label="recipe" src="icon.jpg" className={classes.avatar}>
                         </Avatar>
-                    }
-                    action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
-                    }
+                    }   
                     title="Against Fire"
                     subheader="Ouctubre 04, 2020"
                 />
@@ -80,12 +94,11 @@ export default function CardView() {
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="share">
-                    <ShareIcon />
-                    </IconButton>
+                    <Tooltip title="Copiar localização">
+                        <IconButton aria-label="copy" onClick={handleSelectChange}>
+                            <FileCopyIcon />
+                        </IconButton>
+                    </Tooltip>
                     <IconButton
                     className={clsx(classes.expand, {
                         [classes.expandOpen]: expanded,
@@ -99,6 +112,11 @@ export default function CardView() {
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
+                    <Typography>
+                        <Link href={`https://www.google.com/maps/@${locationList[0].latitude},${locationList[0].longitude}z`}>
+                            Local do incidente
+                        </Link>
+                    </Typography>
                     <Typography paragraph>Method:</Typography>
                     <Typography paragraph>
                         Most of the Earth's weather and air pollution resides in the troposphere, the part of the atmosphere
@@ -131,5 +149,7 @@ export default function CardView() {
                 </Collapse>
             </Card>
         </div>
+        :
+        <div/>
     )
 }
